@@ -15,9 +15,8 @@ func RegisterDomainRoutes(r fiber.Router, db database.IRepository) {
 	domainService := services.NewDomainService(domainRepository)
 	domainController := controllers.NewDomainController(domainService)
 
-	domain.Get("/:domainSlug", domainController.GetDomainBySlug)
-
 	domain.Get("/", domainController.GetDomains)
+	domain.Get("/:domainSlug", domainController.GetDomainBySlug)
 	domain.Post("/", domainController.CreateDomain)
 	domain.Put("/:domainSlug", domainController.UpdateDomainBySlug)
 	domain.Delete("/:domainSlug", domainController.DeleteDomainBySlug)
